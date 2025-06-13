@@ -6,7 +6,7 @@ import useAuth from "../Hooks/useAuth";
 import { Link } from "react-router";
 
 const SignUp = () => {
-  const { signUpUser } = useAuth();
+  const { signUpUser, setUser } = useAuth();
   // const [showPassword, setShowPassword] = useState(false);
   // console.log(signUpUser);
   const {
@@ -21,6 +21,7 @@ const SignUp = () => {
     signUpUser(email, password)
       .then((result) => {
         console.log(result.user);
+        setUser(result.user);
       })
       .catch((error) => {
         console.log(error);

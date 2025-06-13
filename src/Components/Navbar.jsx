@@ -3,7 +3,10 @@ import { AuthContext } from "../Context/AuthContext";
 import useAuth from "../Hooks/useAuth";
 
 const Navbar = () => {
-  const user = useAuth();
+  const { user, signOutUser } = useAuth();
+  // const { email } = user?.user;
+  // console.log(email);
+  // console.log(user.user);
   console.log(user);
   const location = useLocation();
   const links = (
@@ -32,6 +35,15 @@ const Navbar = () => {
       </li>
     </>
   );
+  const handleSignOut = () => {
+    signOutUser()
+      .then(() => {
+        // Sign-out successful.
+      })
+      .catch((error) => {
+        // An error happened.
+      });
+  };
   return (
     <div
       className={`${
@@ -90,7 +102,39 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1 gap-5">{links}</ul>
         </div>
         <div className="navbar-end">
-          <a className="btn">Button</a>
+          {user ? (
+            <div className="dropdown dropdown-end">
+              <div
+                tabIndex={0}
+                role="button"
+                className="btn btn-ghost btn-circle avatar"
+              >
+                <div className="w-10 rounded-full">
+                  <img
+                    alt="Tailwind CSS Navbar component"
+                    src={user?.photoURL}
+                  />
+                </div>
+              </div>
+              <ul
+                tabIndex={0}
+                className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-[#00183A] rounded-box w-52"
+              >
+                <li>
+                  <a>My Articles</a>
+                </li>
+                <li>
+                  <a>Post Article</a>
+                </li>
+                <li onClick={handleSignOut}>
+                  <a>Logout</a>
+                </li>
+              </ul>
+            </div>
+          ) : (
+            // <p>{user?.user?.email}</p>
+            <Link to="/signIn">Sign In</Link>
+          )}
         </div>
       </div>
     </div>

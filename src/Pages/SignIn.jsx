@@ -6,7 +6,7 @@ import InputField from "../Components/InputField";
 import Button from "../Components/Button";
 
 const SignIn = () => {
-  const { signInUser, googleSignIn } = useAuth();
+  const { signInUser, googleSignIn, setUser } = useAuth();
   // const [showPassword, setShowPassword] = useState(false);
   // console.log(signUpUser);
   const navigate = useNavigate();
@@ -22,6 +22,7 @@ const SignIn = () => {
     signInUser(email, password)
       .then((result) => {
         console.log(result.user);
+        setUser(result.user);
         navigate("/");
       })
       .catch((error) => {
@@ -34,6 +35,7 @@ const SignIn = () => {
     googleSignIn()
       .then((result) => {
         console.log(result.user);
+        setUser(result.user);
         navigate("/");
       })
       .catch((error) => {
