@@ -54,7 +54,6 @@ const Banner = () => {
                   </span>
 
                   <span className=" font-medium transition-all group-hover:me-4">
-                    {" "}
                     Explore Articles
                   </span>
                 </a>

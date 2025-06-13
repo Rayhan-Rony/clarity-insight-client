@@ -1,8 +1,10 @@
-import React from "react";
-
 import { Link, NavLink, useLocation } from "react-router";
+import { AuthContext } from "../Context/AuthContext";
+import useAuth from "../Hooks/useAuth";
 
 const Navbar = () => {
+  const user = useAuth();
+  console.log(user);
   const location = useLocation();
   const links = (
     <>
@@ -22,15 +24,23 @@ const Navbar = () => {
       <li className="text-base">
         <NavLink to={"/"}>About Us</NavLink>
       </li>
+      <li className="text-base">
+        <NavLink to={"/signUp"}>Sign Up</NavLink>
+      </li>
+      <li className="text-base">
+        <NavLink to={"/signIn"}>Sign In</NavLink>
+      </li>
     </>
   );
   return (
-    <div>
-      <div
-        className={`navbar  ${
-          location.pathname === "/" ? "text-white" : "bg-base-100"
-        }   shadow-sm max-w-11/12 mx-auto py-6`}
-      >
+    <div
+      className={`${
+        location.pathname === "/"
+          ? "bg-transparent"
+          : "bg-linear-to-r from-[#01257D] to-[#00FFFF] via-[#0E7490]"
+      }`}
+    >
+      <div className={`navbar  max-w-11/12 mx-auto py-6 text-white`}>
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -73,7 +83,7 @@ const Navbar = () => {
             L16,26.393l0.793-0.793l8.807-8.707L26.393,16l-0.793-0.893l-8.807-8.707L16,5.607L16,5.607z"
               />
             </svg>
-            <a className="text-3xl font bold ">Clarity Insights</a>
+            <a className="text-3xl font bold text-white ">Clarity Insights</a>
           </div>
         </div>
         <div className="navbar-center hidden lg:flex">
