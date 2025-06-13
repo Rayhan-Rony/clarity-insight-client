@@ -1,15 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import InputField from "../Components/InputField";
 import Button from "../Components/Button";
+import useAuth from "../Hooks/useAuth";
+import { FaRegEye } from "react-icons/fa6";
+import { FaRegEyeSlash } from "react-icons/fa6";
 
 const SignUp = () => {
+  const { signUpUser } = useAuth();
+  const [showPassword, setShowPassword] = useState(false);
+  // console.log(signUpUser);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    console.log(data);
+    const { email, password } = data;
+    console.log(email, password);
+    signUpUser(email, password)
+      .then((result) => {
+        console.log(result.user);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   console.log(errors);
   return (
     <div className="  min-h-[calc(100vh-100px)]  flex justify-center items-center lg:m-0 md:m-6 m-2 ">
@@ -57,15 +74,30 @@ const SignUp = () => {
                 All new passwords must contain at least 6 characters, at least
                 one capital and one lower-case letter (Aa-Zz).
               </p>
-              <InputField
-                error={errors.password}
-                label="Password"
-                type="password"
-                placeholder="Enter Your Password"
-                others={{
-                  ...register("password", { required: "Password is required" }),
-                }}
-              ></InputField>
+              <div className=" relative">
+                <InputField
+                  error={errors.password}
+                  label="Password"
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Enter Your Password"
+                  others={{
+                    ...register("password", {
+                      required: "Password is required",
+                    }),
+                  }}
+                ></InputField>
+                <span
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute top-3 left-[calc(1/2*113%)]"
+                >
+                  {showPassword ? (
+                    <FaRegEye></FaRegEye>
+                  ) : (
+                    <FaRegEyeSlash></FaRegEyeSlash>
+                  )}
+                </span>
+              </div>
+
               <InputField
                 error={errors.photo}
                 label="Photo URL"
