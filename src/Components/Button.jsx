@@ -1,7 +1,8 @@
 import React from "react";
 import { NavLink } from "react-router";
+import { FaGoogle } from "react-icons/fa6";
 
-const Button = ({ type }) => {
+const Button = ({ type, text, google }) => {
   return (
     <div className="lg:pt-10">
       {/* <NavLink to={""}> */}
@@ -9,6 +10,9 @@ const Button = ({ type }) => {
         className="group relative inline-flex items-center overflow-hidden rounded-sm px-8 py-3 bg-[#00FFFF]  text-black focus:ring-3 focus:outline-hidden"
         type={type}
       >
+        <span className={`mr-2 ${google ? "block" : "hidden"}`}>
+          <FaGoogle />
+        </span>
         <span className="absolute -end-full transition-all group-hover:end-4">
           <svg
             className="size-5 shadow-sm rtl:rotate-180"
@@ -27,7 +31,7 @@ const Button = ({ type }) => {
         </span>
 
         <span className=" font-bold transition-all group-hover:me-4">
-          Create Account and Continue
+          {text}
         </span>
       </button>
       {/* </NavLink> */}

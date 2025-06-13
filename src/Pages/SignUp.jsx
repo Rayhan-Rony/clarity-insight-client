@@ -3,12 +3,11 @@ import { useForm } from "react-hook-form";
 import InputField from "../Components/InputField";
 import Button from "../Components/Button";
 import useAuth from "../Hooks/useAuth";
-import { FaRegEye } from "react-icons/fa6";
-import { FaRegEyeSlash } from "react-icons/fa6";
+import { Link } from "react-router";
 
 const SignUp = () => {
   const { signUpUser } = useAuth();
-  const [showPassword, setShowPassword] = useState(false);
+  // const [showPassword, setShowPassword] = useState(false);
   // console.log(signUpUser);
   const {
     register,
@@ -34,7 +33,9 @@ const SignUp = () => {
         <div>
           <div className=" flex items-center justify-between bg-[#01257D] p-5 text-white font-bold rounded-t-md">
             <p>Create An Account</p>
-            <p className="hover:underline hover:cursor-pointer">SIGN IN ?</p>
+            <Link to="/signIn">
+              <p className="hover:underline hover:cursor-pointer">SIGN IN ?</p>
+            </Link>
           </div>
           <div className="px-4 bg-[#e9edf6] font-semibold rounded-b-md py-8 ">
             <p className="pb-6">
@@ -74,11 +75,13 @@ const SignUp = () => {
                 All new passwords must contain at least 6 characters, at least
                 one capital and one lower-case letter (Aa-Zz).
               </p>
-              <div className=" relative">
+              <div>
                 <InputField
                   error={errors.password}
                   label="Password"
-                  type={showPassword ? "text" : "password"}
+                  type="password"
+                  // showPassword={showPassword}
+                  // setShowPassword={setShowPassword}
                   placeholder="Enter Your Password"
                   others={{
                     ...register("password", {
@@ -86,16 +89,6 @@ const SignUp = () => {
                     }),
                   }}
                 ></InputField>
-                <span
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute top-3 left-[calc(1/2*113%)]"
-                >
-                  {showPassword ? (
-                    <FaRegEye></FaRegEye>
-                  ) : (
-                    <FaRegEyeSlash></FaRegEyeSlash>
-                  )}
-                </span>
               </div>
 
               <InputField
@@ -114,7 +107,10 @@ const SignUp = () => {
                 type="submit"
                 value="Create Account and Continue"
               /> */}
-                <Button type="submit"></Button>
+                <Button
+                  type="submit"
+                  text="Create Account and Continue"
+                ></Button>
               </div>
             </form>
           </div>
