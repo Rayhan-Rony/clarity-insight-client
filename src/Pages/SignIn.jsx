@@ -47,9 +47,11 @@ const SignIn = () => {
       <div className="w-full  lg:max-w-3/4">
         <div>
           <div className=" flex items-center justify-between bg-[#01257D] p-5 text-white font-bold rounded-t-md">
-            <p>Sign In to Your Account</p>
+            <p className="text-[#00FFFF]">Sign In to Your Account</p>
             <Link to="/signUp">
-              <p className="hover:underline hover:cursor-pointer">SIGN UP ?</p>
+              <p className="hover:underline hover:cursor-pointer text-[#00FFFF]">
+                SIGN UP ?
+              </p>
             </Link>
           </div>
           <div className="px-4 bg-[#e9edf6] font-semibold rounded-b-md py-8 ">

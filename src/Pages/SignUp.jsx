@@ -33,9 +33,11 @@ const SignUp = () => {
       <div className="w-full  lg:max-w-3/4">
         <div>
           <div className=" flex items-center justify-between bg-[#01257D] p-5 text-white font-bold rounded-t-md">
-            <p>Create An Account</p>
+            <p className="text-[#00FFFF]">Create An Account</p>
             <Link to="/signIn">
-              <p className="hover:underline hover:cursor-pointer">SIGN IN ?</p>
+              <p className="hover:underline hover:cursor-pointer text-[#00FFFF]">
+                SIGN IN ?
+              </p>
             </Link>
           </div>
           <div className="px-4 bg-[#e9edf6] font-semibold rounded-b-md py-8 ">
