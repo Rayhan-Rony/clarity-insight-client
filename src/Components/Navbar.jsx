@@ -7,7 +7,7 @@ const Navbar = () => {
   // const { email } = user?.user;
   // console.log(email);
   // console.log(user.user);
-  console.log(user);
+  // console.log(user);
   const location = useLocation();
   const links = (
     <>

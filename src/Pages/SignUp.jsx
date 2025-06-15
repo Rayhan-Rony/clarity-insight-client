@@ -4,6 +4,8 @@ import InputField from "../Components/InputField";
 import Button from "../Components/Button";
 import useAuth from "../Hooks/useAuth";
 import { Link } from "react-router";
+import { updateProfile } from "firebase/auth";
+import { auth } from "../Firebase/Firebase.init";
 
 const SignUp = () => {
   const { signUpUser, setUser } = useAuth();
@@ -16,11 +18,23 @@ const SignUp = () => {
   } = useForm();
   const onSubmit = (data) => {
     console.log(data);
-    const { email, password } = data;
-    console.log(email, password);
+    const { email, password, fullName, photo } = data;
+    // console.log(email, password);
     signUpUser(email, password)
       .then((result) => {
         console.log(result.user);
+        updateProfile(auth.currentUser, {
+          displayName: fullName,
+          photoURL: photo,
+        })
+          .then(() => {
+            console.log("update");
+            const updatedUser = auth.currentUser;
+            setUser({ ...updatedUser });
+          })
+          .catch((error) => {
+            console.log(error);
+          });
         setUser(result.user);
       })
       .catch((error) => {

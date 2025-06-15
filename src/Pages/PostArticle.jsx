@@ -6,13 +6,30 @@ import Step1 from "../Components/Step1";
 import Step2 from "../Components/Step2";
 import Step3 from "../Components/Step3";
 import Step4 from "../Components/Step4";
+import axios from "axios";
 
 const PostArticle = () => {
   const { user } = useAuth();
   const methods = useForm({ mood: "onTouched" });
   const [step, setStep] = useState(0);
   const onSubmit = (data) => {
-    console.log("Final Data:", data);
+    // console.log("Final Data:", data);
+    console.log(data);
+    axios
+      .post("http://localhost:3000/insights", data)
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    // fetch("http://localhost:3000/insights", {
+    //   method: "POST",
+    //   headers: {
+    //     "content-type": "application/json",
+    //   },
+    //   body: JSON.stringify(data),
+    // });
   };
   const next = async () => {
     const isvalid = await methods.trigger();
@@ -30,7 +47,7 @@ const PostArticle = () => {
         <div className="w-full  lg:max-w-3/4">
           <div>
             <div className=" flex flex-col items-center justify-between gap-2 bg-[#01257D] p-5 text-white  rounded-t-md">
-              <h1 className="font-bold text-3xl text-[#00FFFF]">
+              <h1 className="font-bold md:text-3xl text-2xl text-[#00FFFF]">
                 Publish Your Insights
               </h1>
               <p className="text-justify text-sm ">
