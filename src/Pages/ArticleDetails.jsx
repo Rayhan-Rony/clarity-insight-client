@@ -1,16 +1,18 @@
 import React from "react";
 import { useLoaderData } from "react-router";
+import { dateFormat } from "../Utils/DateHelpers";
 
 const ArticleDetails = () => {
   const article = useLoaderData();
   console.log(article);
+  const { year, month, day } = dateFormat(article.date);
+  console.log(year, month, day);
   const {
     title,
     content,
     category_name,
     tags,
     thumbnail_image,
-    date,
 
     name,
   } = article;
@@ -50,7 +52,8 @@ const ArticleDetails = () => {
             {name || "Anonymous"}
           </p>
           <p className="mb-2 md:mb-0">
-            <strong className="text-gray-800">Published On:</strong> {date}
+            <strong className="text-gray-800">Published On:</strong>{" "}
+            {`${day[0]}${day[1]}/${month}/${year}`}
           </p>
           <p className="mb-2 md:mb-0">
             <strong className="text-gray-800">Category:</strong>{" "}
