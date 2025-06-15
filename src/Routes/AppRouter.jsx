@@ -5,6 +5,7 @@ import AllArticles from "../Pages/AllArticles";
 import SignIn from "../Pages/SignIn";
 import SignUp from "../Pages/SignUp";
 import PostArticle from "../Pages/PostArticle";
+import ArticleDetails from "../Pages/ArticleDetails";
 
 export const router = createBrowserRouter([
   {
@@ -19,6 +20,12 @@ export const router = createBrowserRouter([
         path: "/allArticles",
         loader: () => fetch("http://localhost:3000/allInsights"),
         Component: AllArticles,
+      },
+      {
+        path: "/insights/:id",
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/Insights/${params.id}`),
+        Component: ArticleDetails,
       },
       {
         path: "/signIn",

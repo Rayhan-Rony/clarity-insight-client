@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 const InsightCard = ({ article }) => {
   const t = article.date.split("-");
   console.log(t[0]);
@@ -17,7 +19,8 @@ const InsightCard = ({ article }) => {
       <p className="text-gray-700 leading-relaxed mb-4 line-clamp-3">
         {article.content}
       </p>
-      <a
+      <Link
+        to={`/insights/${article._id}`}
         className="group relative inline-flex items-center overflow-hidden rounded-sm px-8 py-3 bg-[#00FFFF]  text-black focus:ring-3 focus:outline-hidden"
         href="#"
       >
@@ -42,7 +45,7 @@ const InsightCard = ({ article }) => {
           {" "}
           Read More
         </span>
-      </a>
+      </Link>
     </div>
   );
 };

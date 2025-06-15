@@ -13,7 +13,9 @@ const Step2 = () => {
         <label className="flex flex-col gap-1">
           Select a Category
           <select
-            {...register("category", { required: "Please Select a Category" })}
+            {...register("category_name", {
+              required: "Please Select a Category",
+            })}
             className="input  focus:outline-none border-none w-full"
           >
             <option value="">Select a Category</option>
@@ -63,21 +65,27 @@ const Step2 = () => {
           </select>
         </label>
         {errors.category && (
-          <p className="text-red-500 text-sm mt-1">{errors.category.message}</p>
+          <p className="text-red-500 text-sm mt-1">
+            {errors.category_name.message}
+          </p>
         )}
       </div>
       <div>
         <label className="flex flex-col gap-1">
           Add a Thumbnail Photo (Only hosted photo)
           <input
-            {...register("photo", { required: "Photo URL is required" })}
+            {...register("thumbnail_image", {
+              required: "Photo URL is required",
+            })}
             placeholder="Add a Photo URL"
             className="input  focus:outline-none border-none w-full"
             type="text"
           />
         </label>
         {errors.photo && (
-          <p className="text-red-500 text-sm mt-1">{errors.photo.message}</p>
+          <p className="text-red-500 text-sm mt-1">
+            {errors.thumbnail_image.message}
+          </p>
         )}
       </div>
     </div>
