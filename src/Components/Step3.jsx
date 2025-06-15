@@ -10,8 +10,27 @@ const Step3 = () => {
   } = useFormContext();
   const currentTags = watch("tags", []); // Watch the 'tags' field, default to empty array
   console.log(currentTags);
-  const date = new Date();
-  console.log(date.toDateString());
+
+  const options = {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  };
+
+  const date = new Date().toLocaleDateString("en-US", options);
+
+  const formattedDate = (currentDate) => {
+    const formatDate = currentDate.split(",").join("").split(" ");
+
+    console.log(formatDate);
+    const day = formatDate[1];
+    const month = formatDate[0];
+    const year = formatDate[2];
+    return `${day} ${month} ${year}`;
+  };
+
+  // console.log(date.toLocaleDateString());
+  // const formattedDate = date.toLocaleDateString("en-US", options);
   //   console.log(date.toLocaleString());
   const handleAddTag = (e) => {
     if (e.key === "Enter" || e.key === ",") {
@@ -39,7 +58,7 @@ const Step3 = () => {
             {...register("date", { required: "Date is required" })}
             type="text"
             readOnly
-            defaultValue={date.toDateString()}
+            defaultValue={formattedDate(date)}
             className="input  focus:outline-none border-none w-full"
           />
         </label>
