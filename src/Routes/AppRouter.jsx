@@ -6,11 +6,15 @@ import SignIn from "../Pages/SignIn";
 import SignUp from "../Pages/SignUp";
 import PostArticle from "../Pages/PostArticle";
 import ArticleDetails from "../Pages/ArticleDetails";
+import NotFoundPage from "../Pages/NotFoundPage";
+import LoadingPage from "../Pages/LoadingPage";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     Component: MainLayout,
+    errorElement: <NotFoundPage></NotFoundPage>,
+    hydrateFallbackElement: <LoadingPage></LoadingPage>,
     children: [
       {
         index: true,

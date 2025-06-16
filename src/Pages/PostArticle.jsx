@@ -9,12 +9,22 @@ import Step4 from "../Components/Step4";
 import axios from "axios";
 
 const PostArticle = () => {
+  // const steps = [<Step1 />, <Step2 />, <Step3 />, <Step4 />];
+  const steps = [Step1, Step2, Step3, Step4];
   const { user } = useAuth();
   const methods = useForm({ mood: "onTouched" });
   const [step, setStep] = useState(0);
   const onSubmit = (data) => {
     // console.log("Final Data:", data);
     console.log(data);
+
+    // if (step < steps.length) {
+    //   return;
+    // }
+
+    console.log(step);
+    console.log(steps);
+    console.log(steps.length);
     axios
       .post("http://localhost:3000/insights", data)
       .then((response) => {
@@ -32,14 +42,12 @@ const PostArticle = () => {
     // });
   };
   const next = async () => {
-    const isvalid = await methods.trigger();
-    if (isvalid) {
+    const isValid = await methods.trigger();
+    if (isValid) {
       setStep((prev) => prev + 1);
     }
   };
   const back = () => setStep((prev) => prev - 1);
-
-  const steps = [<Step1 />, <Step2 />, <Step3 />, <Step4 />];
 
   return (
     <FormProvider {...methods}>
@@ -66,7 +74,13 @@ const PostArticle = () => {
                 onSubmit={methods.handleSubmit(onSubmit)}
                 className="space-y-6"
               >
-                {steps[step]}
+                {
+                  /* {steps[step]} */
+                  // Inside JSX
+
+                  React.createElement(steps[step])
+                }
+
                 <div className="flex gap-4">
                   {step > 0 && (
                     <button type="button" onClick={back} className="btn">
