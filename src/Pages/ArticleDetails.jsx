@@ -6,15 +6,17 @@ import useAuth from "../Hooks/useAuth";
 
 const ArticleDetails = () => {
   const article = useLoaderData();
-  const [likesCount, setLikesCount] = useState(30);
+  const [likesCount, setLikesCount] = useState(0);
+  const [loading, setLoading] = useState(false);
   const [commentText, setCommentText] = useState("");
   const [comments, setComments] = useState([]);
   const [postClicked, setPostClicked] = useState(false);
   const { user } = useAuth();
-  console.log(user);
+  // console.log(user);
   // console.log(article);
+
   const { year, month, day } = dateFormat(article?.date);
-  console.log(year, month, day);
+  // console.log(year, month, day);
   const {
     _id,
     title,
@@ -25,26 +27,6 @@ const ArticleDetails = () => {
 
     name,
   } = article;
-  useEffect(() => {
-    axios
-      .get(`http://localhost:3000/comments/${_id}`)
-      .then((response) => {
-        console.log(response.data);
-        setComments(response.data);
-      })
-      .catch((error) => console.log(error));
-  }, [postClicked]);
-
-  useEffect(() => {
-    axios
-      .get(`http://localhost:3000/likes/${_id}`)
-      .then((response) => {
-        console.log(response.data);
-        setLikesCount(response.data.likesCount);
-      })
-      .catch((error) => console.log(error));
-  }, []);
-
   const handleLikesCount = () => {
     console.log(likesCount);
 
@@ -56,14 +38,30 @@ const ArticleDetails = () => {
     axios
       .post(`http://localhost:3000/likes/${_id}`, likes)
       .then((response) => {
-        console.log("inside");
-        console.log(response.data);
+        // console.log("inside");
+        // console.log(response.data);
       })
       .catch((error) => console.log(error));
   };
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3000/likes/${_id}`)
+      .then((response) => {
+        // console.log("inside get then");
+        if (response.data) {
+          setLikesCount(response.data.likesCount);
+        } else {
+          setLikesCount(0);
+        }
+
+        console.log(response);
+      })
+      .catch((error) => console.log(error));
+  }, []);
+
   const handlePostComment = () => {
     console.log(commentText);
-    if (commentText.trim() === "") {
+    if (!commentText.trim()) {
       alert("You must be add comment to post");
     } else {
       const photoURL = user.photoURL;
@@ -77,7 +75,10 @@ const ArticleDetails = () => {
       axios
         .post("http://localhost:3000/comments", commentDetails)
         .then((response) => {
-          console.log(response.data);
+          console.log("inside post comment then", response.data);
+          if (response.data.acknowledged) {
+            setLoading(!loading);
+          }
         })
         .catch((error) => {
           console.log(error);
@@ -86,6 +87,15 @@ const ArticleDetails = () => {
       setPostClicked(!postClicked);
     }
   };
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3000/comments/${_id}`)
+      .then((response) => {
+        console.log("inside get of comments", response.data);
+        setComments(response.data);
+      })
+      .catch((error) => console.log(error));
+  }, [postClicked, loading]);
 
   return (
     <div className="min-h-screen bg-gray-100   flex justify-center py-8">

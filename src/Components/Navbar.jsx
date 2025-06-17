@@ -19,7 +19,7 @@ const Navbar = () => {
         <NavLink to={"/allArticles"}>All Articles</NavLink>
       </li>
       <li className="text-base">
-        <NavLink to={"/"}>My Articles</NavLink>
+        <NavLink to={"/myArticle"}>My Articles</NavLink>
       </li>
       <li className="text-base">
         <NavLink to={"/postArticle"}>Post Article</NavLink>

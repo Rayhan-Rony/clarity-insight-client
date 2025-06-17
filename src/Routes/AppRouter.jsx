@@ -8,6 +8,7 @@ import PostArticle from "../Pages/PostArticle";
 import ArticleDetails from "../Pages/ArticleDetails";
 import NotFoundPage from "../Pages/NotFoundPage";
 import LoadingPage from "../Pages/LoadingPage";
+import MyArticle from "../Pages/MyArticle";
 
 export const router = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ export const router = createBrowserRouter([
       {
         path: "/postArticle",
         Component: PostArticle,
+      },
+      {
+        path: "/myArticle",
+        Component: MyArticle,
       },
     ],
   },
