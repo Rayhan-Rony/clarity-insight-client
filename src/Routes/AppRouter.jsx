@@ -9,6 +9,7 @@ import ArticleDetails from "../Pages/ArticleDetails";
 import NotFoundPage from "../Pages/NotFoundPage";
 import LoadingPage from "../Pages/LoadingPage";
 import MyArticle from "../Pages/MyArticle";
+import MyArticles from "../Pages/MyArticle";
 
 export const router = createBrowserRouter([
   {
@@ -29,7 +30,7 @@ export const router = createBrowserRouter([
       {
         path: "/insights/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/Insights/${params.id}`),
+          fetch(`http://localhost:3000/insights/${params.id}`),
         Component: ArticleDetails,
       },
       {
@@ -45,8 +46,8 @@ export const router = createBrowserRouter([
         Component: PostArticle,
       },
       {
-        path: "/myArticle",
-        Component: MyArticle,
+        path: "/myArticles",
+        Component: MyArticles,
       },
     ],
   },
