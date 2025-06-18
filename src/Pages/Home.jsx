@@ -6,7 +6,7 @@ import LoadingPage from "./LoadingPage";
 
 const Home = () => {
   return (
-    <div>
+    <div data-theme="dark">
       <Banner></Banner>
 
       <LatestInsights></LatestInsights>

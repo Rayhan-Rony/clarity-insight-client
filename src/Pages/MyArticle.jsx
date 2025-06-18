@@ -5,15 +5,13 @@ import { Link, Navigate } from "react-router";
 import Modal from "../Components/Modal";
 import PostArticle from "../Pages/PostArticle";
 import InputField from "../Components/InputField";
+import Swal from "sweetalert2";
 
 const MyArticles = () => {
   const { user, loading } = useAuth();
   const [articles, setArticles] = useState([]);
   const [modalArticles, setModalArticles] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  // const currentTags = watch("tags", []); // Watch the 'tags' field, default to empty array
-  // console.log(currentTags);
-  const [tags, setTags] = useState([]);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -37,28 +35,7 @@ const MyArticles = () => {
       })
       .catch((error) => console.log(error));
   }, [loading]);
-  const handleAddTag = (e) => {
-    if (e.key === "Enter" || e.key === ",") {
-      e.preventDefault(); // Prevent form submission or comma from typing
-      const newTag = e.target.value.trim();
-      console.log(newTag);
-      setTags([...tags, newTag]);
 
-      // if (newTag && !currentTags.includes(newTag)) {
-      // Add if not empty and not a duplicate
-      // setValue("tags", [...currentTags, newTag]);
-      e.target.value = ""; // Clear the input
-      // }
-    }
-  };
-  const handleRemoveTag = (tagToRemove) => {
-    const remainingTag = tags.filter((tag) => tag !== tagToRemove);
-    console.log(remainingTag);
-    setTags([...remainingTag]);
-  };
-  console.log(tags);
-  console.log("Articles", articles);
-  console.log("modalAriticle", modalArticles);
   const handleUpdateWithModal = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -80,12 +57,29 @@ const MyArticles = () => {
       });
   };
   const handleDeleteArticle = (id) => {
-    axios
-      .delete(`http://localhost:3000/myArticles/${id}`)
-      .then((response) => console.log(response))
-      .catch((error) => {
-        console.log(error);
-      });
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success",
+        });
+      }
+    });
+    // axios
+    //   .delete(`http://localhost:3000/myArticles/${id}`)
+    //   .then((response) => console.log(response))
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
   };
   return (
     <div className="min-h-screen bg-gray-100  flex flex-col items-center py-8 px-4">

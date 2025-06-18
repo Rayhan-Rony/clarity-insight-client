@@ -6,20 +6,20 @@ const InsightCard = ({ article }) => {
   console.log(year, month, day);
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
-      <h2 className="md:text-2xl text-xl font-bold text-gray-800 mb-2">
+    <div className="bg-white dark:bg-gray-800 dark:shadow-xl dark:hover:shadow-2xl rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
+      <h2 className="md:text-2xl dark:text-gray-100 text-xl font-bold text-gray-800 mb-2">
         {article.title}
       </h2>
-      <p className="text-gray-600 text-sm mb-4">
+      <p className="text-gray-600 text-sm mb-4 dark:text-gray-300">
         By {article.name} on {`${day[0]}${day[1]}/${month}/${year}`}
       </p>
       {/* line-clamp-3 ensures the content snippet doesn't exceed 3 lines */}
-      <p className="text-gray-700 leading-relaxed mb-4 line-clamp-3">
+      <p className="text-gray-700 leading-relaxed mb-4 line-clamp-3 dark:text-gray-200">
         {article.content}
       </p>
       <Link
         to={`/insights/${article._id}`}
-        className="group relative inline-flex items-center overflow-hidden rounded-sm px-8 py-3 bg-[#00FFFF]  text-black focus:ring-3 focus:outline-hidden"
+        className="group relative inline-flex items-center overflow-hidden rounded-sm px-8 py-3 bg-[#00FFFF]  text-black dark:bg-cyan-500 focus:ring-3 focus:outline-hidden"
         href="#"
       >
         <span className="absolute -end-full transition-all group-hover:end-4">
