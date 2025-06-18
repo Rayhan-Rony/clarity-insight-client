@@ -79,6 +79,14 @@ const MyArticles = () => {
         console.log(error);
       });
   };
+  const handleDeleteArticle = (id) => {
+    axios
+      .delete(`http://localhost:3000/myArticles/${id}`)
+      .then((response) => console.log(response))
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   return (
     <div className="min-h-screen bg-gray-100  flex flex-col items-center py-8 px-4">
       <div
@@ -157,7 +165,7 @@ const MyArticles = () => {
                           Edit
                         </button>
                         <button
-                          //   onClick={() => handleDeleteArticle(article._id)}
+                          onClick={() => handleDeleteArticle(article._id)}
                           className="text-red-600 hover:text-red-900 px-3 py-1 rounded-md border border-red-600 hover:border-red-900 transition-colors text-xs font-semibold"
                         >
                           Delete
