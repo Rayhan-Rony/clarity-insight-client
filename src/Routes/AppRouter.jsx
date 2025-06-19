@@ -11,6 +11,7 @@ import LoadingPage from "../Pages/LoadingPage";
 import MyArticle from "../Pages/MyArticle";
 import MyArticles from "../Pages/MyArticle";
 import PrivateRouter from "./PrivateRouter";
+import ProfileDetails from "../Pages/ProfileDetails";
 
 export const router = createBrowserRouter([
   {
@@ -57,6 +58,10 @@ export const router = createBrowserRouter([
             <MyArticle></MyArticle>
           </PrivateRouter>
         ),
+      },
+      {
+        path: "/profileDetails",
+        element: <ProfileDetails></ProfileDetails>,
       },
     ],
   },

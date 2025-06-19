@@ -7,5 +7,6 @@
   font-family: "Karla", sans-serif;
 }
 .active {
-  color: gray;
+  color: rgb(225, 220, 220);
+  text-decoration: underline;
 }

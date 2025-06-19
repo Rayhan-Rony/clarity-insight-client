@@ -17,7 +17,7 @@ const NotFoundPage = () => {
           incorrectly.
         </p>
         <Link
-          href="/"
+          to="/"
           className="inline-flex items-center px-8 py-4 bg-[#00FFFF]  font-semibold rounded-full shadow-lg hover:bg-[#00FFFF] transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-300"
         >
           Go Back Home
