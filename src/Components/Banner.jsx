@@ -32,7 +32,7 @@ const Banner = () => {
             {/* Base - Left */}
             <div className="lg:pt-10">
               <NavLink to={"/allArticles"}>
-                <a
+                <span
                   className="group relative inline-flex items-center overflow-hidden rounded-sm px-8 py-3 bg-[#00FFFF]  text-black focus:ring-3 focus:outline-hidden"
                   href="#"
                 >
@@ -56,7 +56,7 @@ const Banner = () => {
                   <span className=" font-medium transition-all group-hover:me-4">
                     Explore Articles
                   </span>
-                </a>
+                </span>
               </NavLink>
             </div>
           </div>

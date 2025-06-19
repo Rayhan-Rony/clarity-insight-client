@@ -3,43 +3,62 @@ import { useForm } from "react-hook-form";
 import InputField from "../Components/InputField";
 import Button from "../Components/Button";
 import useAuth from "../Hooks/useAuth";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { updateProfile } from "firebase/auth";
 import { auth } from "../Firebase/Firebase.init";
+import Swal from "sweetalert2";
 
 const SignUp = () => {
   const { signUpUser, setUser } = useAuth();
-  // const [showPassword, setShowPassword] = useState(false);
-  // console.log(signUpUser);
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
   const onSubmit = (data) => {
-    console.log(data);
     const { email, password, fullName, photo } = data;
-    // console.log(email, password);
-    signUpUser(email, password)
-      .then((result) => {
-        console.log(result.user);
-        updateProfile(auth.currentUser, {
-          displayName: fullName,
-          photoURL: photo,
-        })
-          .then(() => {
-            console.log("update");
-            const updatedUser = auth.currentUser;
-            setUser({ ...updatedUser });
+    if (passwordRegex.test(password)) {
+      console.log(true);
+      signUpUser(email, password)
+        .then((result) => {
+          console.log(result.user);
+          updateProfile(auth.currentUser, {
+            displayName: fullName,
+            photoURL: photo,
           })
-          .catch((error) => {
-            console.log(error);
+            .then(() => {
+              console.log("update");
+              const updatedUser = auth.currentUser;
+              setUser({ ...updatedUser });
+              navigate("/");
+              Swal.fire({
+                title: "Sign Up Successful",
+                icon: "success",
+                draggable: true,
+              });
+            })
+            .catch((error) => {
+              console.log(error.message);
+            });
+          setUser(result.user);
+        })
+        .catch((error) => {
+          console.log(error);
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: `${error?.message}`,
           });
-        setUser(result.user);
-      })
-      .catch((error) => {
-        console.log(error);
+        });
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "All new passwords must contain at least 6 characters, at least one capital and one lower-case letter (Aa-Zz)",
       });
+    }
   };
   console.log(errors);
   return (

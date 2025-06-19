@@ -1,8 +1,16 @@
 import React from "react";
+import { useLocation } from "react-router";
 
 const Footer = () => {
+  const location = useLocation();
   return (
-    <footer className="bg-base-200">
+    <footer
+      className={`bg-base-200 ${
+        location.pathname === "/signUp" || location.pathname === "/signIn"
+          ? "hidden"
+          : "block"
+      }`}
+    >
       <div className="footer sm:footer-horizontal  text-base-content p-10 max-w-11/12 mx-auto">
         <div className="flex items-center gap-3">
           <svg

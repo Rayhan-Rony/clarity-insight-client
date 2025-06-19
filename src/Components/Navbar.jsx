@@ -24,6 +24,9 @@ const Navbar = () => {
       <li className="text-base">
         <NavLink to={"/postArticle"}>Post Article</NavLink>
       </li>
+      <li className="text-base">
+        <NavLink to={"/"}>About Us</NavLink>
+      </li>
     </>
   );
   const handleSignOut = () => {
@@ -41,6 +44,10 @@ const Navbar = () => {
         location.pathname === "/"
           ? "bg-transparent"
           : "bg-linear-to-r from-[#01257D] to-[#00FFFF] via-[#0E7490]"
+      } ${
+        location.pathname === "/signUp" || location.pathname === "/signIn"
+          ? "hidden"
+          : "block"
       }`}
     >
       <div className={`navbar  max-w-11/12 mx-auto py-6 text-white`}>
@@ -103,10 +110,7 @@ const Navbar = () => {
                 className="btn btn-ghost btn-circle avatar"
               >
                 <div className="w-10 rounded-full">
-                  <img
-                    alt="Tailwind CSS Navbar component"
-                    src={user?.photoURL}
-                  />
+                  <img alt="photo invalid" src={user?.photoURL} />
                 </div>
               </div>
               <ul

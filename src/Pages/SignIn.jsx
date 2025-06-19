@@ -4,11 +4,11 @@ import useAuth from "../Hooks/useAuth";
 import { Link, useLocation, useNavigate } from "react-router";
 import InputField from "../Components/InputField";
 import Button from "../Components/Button";
+import Swal from "sweetalert2";
 
 const SignIn = () => {
   const { signInUser, googleSignIn, setUser } = useAuth();
-  // const [showPassword, setShowPassword] = useState(false);
-  // console.log(signUpUser);
+
   const location = useLocation();
   console.log(location);
   const navigate = useNavigate();
@@ -26,9 +26,19 @@ const SignIn = () => {
         console.log(result.user);
         setUser(result.user);
         navigate(location?.state || "/");
+        Swal.fire({
+          title: "Sign In Successful",
+          icon: "success",
+          draggable: true,
+        });
       })
       .catch((error) => {
         console.log(error);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${error?.message}`,
+        });
       });
   };
   console.log(errors);
@@ -38,10 +48,21 @@ const SignIn = () => {
       .then((result) => {
         console.log(result.user);
         setUser(result.user);
-        navigate("/");
+
+        navigate(location?.state || "/");
+        Swal.fire({
+          title: "Sign In Successful",
+          icon: "success",
+          draggable: true,
+        });
       })
       .catch((error) => {
         console.log(error);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${error?.message}`,
+        });
       });
   };
   return (
@@ -61,8 +82,6 @@ const SignIn = () => {
               onSubmit={handleSubmit(onSubmit)}
               className="flex flex-col gap-6  justify-center "
             >
-              {/* {...register("First name", { required: true, maxLength: 80 })} */}
-
               <InputField
                 error={errors.email}
                 label="Email"
@@ -81,8 +100,6 @@ const SignIn = () => {
                   error={errors.password}
                   label="Password"
                   type="password"
-                  // showPassword={showPassword}
-                  // setShowPassword={setShowPassword}
                   placeholder="Enter Your Password"
                   others={{
                     ...register("password", {
@@ -93,12 +110,6 @@ const SignIn = () => {
               </div>
 
               <div className="flex flex-col gap-2 items-center justify-center">
-                {/* <input
-                className="btn"
-                type="submit"
-                value="Create Account and Continue"
-              /> */}
-
                 <Button type="submit" text="Sign in and Continue"></Button>
                 <div onClick={handleGoogleSignIn}>
                   <Button

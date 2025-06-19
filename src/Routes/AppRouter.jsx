@@ -12,6 +12,7 @@ import MyArticle from "../Pages/MyArticle";
 import MyArticles from "../Pages/MyArticle";
 import PrivateRouter from "./PrivateRouter";
 import ProfileDetails from "../Pages/ProfileDetails";
+import CategoryDetails from "../Pages/CategoryDetails";
 
 export const router = createBrowserRouter([
   {
@@ -62,6 +63,12 @@ export const router = createBrowserRouter([
       {
         path: "/profileDetails",
         element: <ProfileDetails></ProfileDetails>,
+      },
+      {
+        path: "/categoryDetails/:name",
+        Component: CategoryDetails,
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/category/${params.name}`),
       },
     ],
   },

@@ -12,6 +12,18 @@ const MyArticles = () => {
   const [articles, setArticles] = useState([]);
   const [modalArticles, setModalArticles] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [updated, setUpdated] = useState(false);
+  const [deleted, setDeleted] = useState(false);
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3000/myArticles?email=${user?.email}`)
+      .then((response) => {
+        console.log(response.data);
+        setArticles(response.data);
+      })
+      .catch((error) => console.log(error));
+  }, [loading, updated, deleted]);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -25,16 +37,6 @@ const MyArticles = () => {
     setIsModalOpen(false);
   };
   console.log(user?.email);
-
-  useEffect(() => {
-    axios
-      .get(`http://localhost:3000/myArticles?email=${user?.email}`)
-      .then((response) => {
-        console.log(response.data);
-        setArticles(response.data);
-      })
-      .catch((error) => console.log(error));
-  }, [loading]);
 
   const handleUpdateWithModal = (e) => {
     e.preventDefault();
@@ -51,6 +53,12 @@ const MyArticles = () => {
       .patch("http://localhost:3000/myArticles", newInfo)
       .then((response) => {
         console.log(response);
+        Swal.fire({
+          title: "Update your insights successfully",
+          icon: "success",
+          draggable: true,
+        });
+        setUpdated(!updated);
       })
       .catch((error) => {
         console.log(error);
@@ -67,19 +75,20 @@ const MyArticles = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
+        axios
+          .delete(`http://localhost:3000/myArticles/${id}`)
+          .then((response) => console.log(response))
+          .catch((error) => {
+            console.log(error);
+          });
         Swal.fire({
           title: "Deleted!",
-          text: "Your file has been deleted.",
+          text: "Your insights has been deleted.",
           icon: "success",
         });
+        setDeleted(!deleted);
       }
     });
-    // axios
-    //   .delete(`http://localhost:3000/myArticles/${id}`)
-    //   .then((response) => console.log(response))
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
   };
   return (
     <div className="min-h-screen bg-gray-100  flex flex-col items-center py-8 px-4">

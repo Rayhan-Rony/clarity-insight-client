@@ -7,12 +7,15 @@ import Step1 from "../Components/Step1";
 import Step2 from "../Components/Step2";
 import Step3 from "../Components/Step3";
 import Step4 from "../Components/Step4";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router";
 
 const PostArticle = () => {
   const { user } = useAuth();
   const methods = useForm({ mode: "onTouched" });
   const [step, setStep] = useState(0);
   const steps = [Step1, Step2, Step3, Step4];
+  const navigate = useNavigate();
 
   const onSubmit = async (data) => {
     if (step < steps.length - 1) {
@@ -27,6 +30,12 @@ const PostArticle = () => {
       .post("http://localhost:3000/insights", data)
       .then((response) => {
         console.log("Submission successful:", response.data);
+        Swal.fire({
+          title: "Add Your insights successfully",
+          icon: "success",
+          draggable: true,
+        });
+        navigate("/myArticles");
       })
       .catch((error) => {
         console.error("Submission error:", error);
