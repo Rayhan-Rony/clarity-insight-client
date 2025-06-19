@@ -46,6 +46,7 @@ const Navbar = () => {
   };
   return (
     <div
+      data-theme="dark"
       className={`${
         location.pathname === "/"
           ? "bg-transparent"

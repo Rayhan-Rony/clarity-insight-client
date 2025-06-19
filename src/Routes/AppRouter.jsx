@@ -10,6 +10,7 @@ import NotFoundPage from "../Pages/NotFoundPage";
 import LoadingPage from "../Pages/LoadingPage";
 import MyArticle from "../Pages/MyArticle";
 import MyArticles from "../Pages/MyArticle";
+import PrivateRouter from "./PrivateRouter";
 
 export const router = createBrowserRouter([
   {
@@ -43,11 +44,19 @@ export const router = createBrowserRouter([
       },
       {
         path: "/postArticle",
-        Component: PostArticle,
+        element: (
+          <PrivateRouter>
+            <PostArticle></PostArticle>
+          </PrivateRouter>
+        ),
       },
       {
         path: "/myArticles",
-        Component: MyArticles,
+        element: (
+          <PrivateRouter>
+            <MyArticle></MyArticle>
+          </PrivateRouter>
+        ),
       },
     ],
   },

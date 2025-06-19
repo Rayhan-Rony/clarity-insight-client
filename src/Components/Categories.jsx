@@ -37,14 +37,14 @@ const Categories = () => {
   return (
     <section className="md:py-20 py-10 ">
       <section className="w-11/12 mx-auto ">
-        <h1 className="md:text-4xl text-2xl font-bold text-center text-gray-900 md:mb-12 mb-6">
+        <h1 className="md:text-4xl text-2xl font-bold text-center dark:text-gray-100 text-gray-900 md:mb-12 mb-6">
           Explore Categories
         </h1>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
           {categories.map((category) => (
             <button
               key={category.id}
-              className="flex items-center justify-center p-4 bg-white  rounded-lg shadow-md hover:shadow-lg hover:bg-blue-50 transition-all duration-200  text-gray-700 font-semibold text-center text-lg md:text-xl transform hover:-translate-y-1 hover:cursor-pointer"
+              className="flex items-center justify-center p-4 bg-white dark:bg-gray-800  rounded-lg shadow-md hover:shadow-lg dark:text-gray-100 dark:hover:bg-cyan-500 hover:bg-blue-50 transition-all duration-200  text-gray-700 font-semibold text-center text-lg md:text-xl transform hover:-translate-y-1 hover:cursor-pointer"
             >
               {category.name}
             </button>

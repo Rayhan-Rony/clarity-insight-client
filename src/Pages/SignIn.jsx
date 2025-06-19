@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import useAuth from "../Hooks/useAuth";
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import InputField from "../Components/InputField";
 import Button from "../Components/Button";
 
@@ -9,6 +9,8 @@ const SignIn = () => {
   const { signInUser, googleSignIn, setUser } = useAuth();
   // const [showPassword, setShowPassword] = useState(false);
   // console.log(signUpUser);
+  const location = useLocation();
+  console.log(location);
   const navigate = useNavigate();
   const {
     register,
@@ -23,7 +25,7 @@ const SignIn = () => {
       .then((result) => {
         console.log(result.user);
         setUser(result.user);
-        navigate("/");
+        navigate(location?.state || "/");
       })
       .catch((error) => {
         console.log(error);
