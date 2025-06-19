@@ -92,7 +92,7 @@ const SignIn = () => {
                 ></InputField>
               </div>
 
-              <div className="flex flex-col items-center justify-center">
+              <div className="flex flex-col gap-2 items-center justify-center">
                 {/* <input
                 className="btn"
                 type="submit"

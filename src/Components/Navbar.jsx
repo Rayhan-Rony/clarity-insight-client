@@ -24,15 +24,6 @@ const Navbar = () => {
       <li className="text-base">
         <NavLink to={"/postArticle"}>Post Article</NavLink>
       </li>
-      <li className="text-base">
-        <NavLink to={"/"}>About Us</NavLink>
-      </li>
-      <li className="text-base">
-        <NavLink to={"/signUp"}>Sign Up</NavLink>
-      </li>
-      <li className="text-base">
-        <NavLink to={"/signIn"}>Sign In</NavLink>
-      </li>
     </>
   );
   const handleSignOut = () => {
@@ -75,12 +66,12 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content bg-[#01257D] rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
               {links}
             </ul>
           </div>
-          <div className="flex items-center gap-3">
+          <div className=" items-center gap-3 lg:flex hidden">
             {/* <img className="w-8 h-8 " src={logoIcon} alt="" /> */}
             <svg
               viewBox="0 0 32 32"
@@ -96,10 +87,12 @@ const Navbar = () => {
             L16,26.393l0.793-0.793l8.807-8.707L26.393,16l-0.793-0.893l-8.807-8.707L16,5.607L16,5.607z"
               />
             </svg>
-            <a className="text-3xl font bold text-white ">Clarity Insights</a>
+            <a className="text-3xl md:text-2xl font bold text-white ">
+              Clarity Insights
+            </a>
           </div>
         </div>
-        <div className="navbar-center hidden lg:flex">
+        <div className="navbar-center hidden lg:flex ">
           <ul className="menu menu-horizontal px-1 gap-5">{links}</ul>
         </div>
         <div className="navbar-end">
@@ -121,11 +114,11 @@ const Navbar = () => {
                 tabIndex={0}
                 className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-[#00183A] rounded-box w-52"
               >
-                <li>
-                  <a>My Articles</a>
+                <li className="text-base">
+                  <NavLink to={"/myArticles"}>My Articles</NavLink>
                 </li>
-                <li>
-                  <a>Post Article</a>
+                <li className="text-base">
+                  <NavLink to={"/postArticle"}>Post Article</NavLink>
                 </li>
                 <li onClick={handleSignOut}>
                   <a>Logout</a>

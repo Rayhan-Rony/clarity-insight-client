@@ -6,3 +6,6 @@
 .karla {
   font-family: "Karla", sans-serif;
 }
+.active {
+  color: gray;
+}
