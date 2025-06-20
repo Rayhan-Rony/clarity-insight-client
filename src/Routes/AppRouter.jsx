@@ -27,13 +27,16 @@ export const router = createBrowserRouter([
       },
       {
         path: "/allArticles",
-        loader: () => fetch("http://localhost:3000/allInsights"),
+        loader: () =>
+          fetch("https://clarity-insight-server.vercel.app/allInsights"),
         Component: AllArticles,
       },
       {
         path: "/insights/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/insights/${params.id}`),
+          fetch(
+            `https://clarity-insight-server.vercel.app/insights/${params.id}`
+          ),
         Component: ArticleDetails,
       },
       {
@@ -68,7 +71,9 @@ export const router = createBrowserRouter([
         path: "/categoryDetails/:name",
         Component: CategoryDetails,
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/category/${params.name}`),
+          fetch(
+            `https://clarity-insight-server.vercel.app/category/${params.name}`
+          ),
       },
     ],
   },

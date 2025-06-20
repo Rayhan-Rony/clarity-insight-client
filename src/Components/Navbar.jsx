@@ -1,13 +1,11 @@
 import { Link, NavLink, useLocation } from "react-router";
 import { AuthContext } from "../Context/AuthContext";
 import useAuth from "../Hooks/useAuth";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
   const { user, signOutUser } = useAuth();
-  // const { email } = user?.user;
-  // console.log(email);
-  // console.log(user.user);
-  // console.log(user);
+
   const location = useLocation();
   const links = (
     <>
@@ -32,11 +30,13 @@ const Navbar = () => {
   const handleSignOut = () => {
     signOutUser()
       .then(() => {
-        // Sign-out successful.
+        Swal.fire({
+          title: "Log out Successfully",
+          icon: "success",
+          draggable: true,
+        });
       })
-      .catch((error) => {
-        // An error happened.
-      });
+      .catch((error) => {});
   };
   return (
     <div

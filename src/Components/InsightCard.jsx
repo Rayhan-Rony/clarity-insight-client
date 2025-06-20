@@ -3,7 +3,6 @@ import { dateFormat } from "../Utils/DateHelpers";
 
 const InsightCard = ({ article }) => {
   const { year, month, day } = dateFormat(article.date);
-  console.log(year, month, day);
 
   return (
     <div className="bg-white   rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">

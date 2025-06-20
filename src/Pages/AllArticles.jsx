@@ -4,7 +4,7 @@ import InsightCard from "../Components/InsightCard";
 
 const AllArticles = () => {
   const allInsights = useLoaderData();
-  console.log(allInsights);
+
   return (
     <div className="max-w-11/12 mx-auto my-10">
       <h1 className="md:text-4xl text-2xl font-bold text-center text-gray-900 md:mb-12 mb-6">

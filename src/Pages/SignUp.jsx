@@ -20,16 +20,13 @@ const SignUp = () => {
   const onSubmit = (data) => {
     const { email, password, fullName, photo } = data;
     if (passwordRegex.test(password)) {
-      console.log(true);
       signUpUser(email, password)
         .then((result) => {
-          console.log(result.user);
           updateProfile(auth.currentUser, {
             displayName: fullName,
             photoURL: photo,
           })
             .then(() => {
-              console.log("update");
               const updatedUser = auth.currentUser;
               setUser({ ...updatedUser });
               navigate("/");
@@ -39,13 +36,10 @@ const SignUp = () => {
                 draggable: true,
               });
             })
-            .catch((error) => {
-              console.log(error.message);
-            });
+            .catch((error) => {});
           setUser(result.user);
         })
         .catch((error) => {
-          console.log(error);
           Swal.fire({
             icon: "error",
             title: "Oops...",
@@ -60,7 +54,7 @@ const SignUp = () => {
       });
     }
   };
-  console.log(errors);
+
   return (
     <div className="  min-h-[calc(100vh-100px)]  flex justify-center items-center lg:m-0 md:m-6 m-2 ">
       <div className="w-full  lg:max-w-3/4">

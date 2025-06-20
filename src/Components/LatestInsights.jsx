@@ -6,14 +6,11 @@ const LatestInsights = () => {
   const [latestArticles, setLatestArticles] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:3000/insights")
+      .get("https://clarity-insight-server.vercel.app/insights")
       .then((response) => {
-        console.log(response.data);
         setLatestArticles(response.data);
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch((error) => {});
   }, []);
 
   return (

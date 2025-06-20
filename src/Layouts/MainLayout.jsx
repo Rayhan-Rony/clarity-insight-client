@@ -5,7 +5,7 @@ import Footer from "../Components/Footer";
 
 const MainLayout = () => {
   const location = useLocation();
-  console.log(location);
+
   return (
     <div>
       {location.pathname === "/" ? "" : <Navbar></Navbar>}

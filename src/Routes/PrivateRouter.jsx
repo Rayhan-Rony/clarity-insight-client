@@ -5,8 +5,7 @@ import LoadingPage from "../Pages/LoadingPage";
 
 const PrivateRouter = ({ children }) => {
   const { user, loading } = useAuth();
-  const location = useLocation();
-  console.log(location.pathname);
+
   if (loading) {
     return <LoadingPage></LoadingPage>;
   }

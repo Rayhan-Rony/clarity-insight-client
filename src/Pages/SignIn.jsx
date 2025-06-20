@@ -10,7 +10,7 @@ const SignIn = () => {
   const { signInUser, googleSignIn, setUser } = useAuth();
 
   const location = useLocation();
-  console.log(location);
+
   const navigate = useNavigate();
   const {
     register,
@@ -18,12 +18,10 @@ const SignIn = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    console.log(data);
     const { email, password } = data;
-    console.log(email, password);
+
     signInUser(email, password)
       .then((result) => {
-        console.log(result.user);
         setUser(result.user);
         navigate(location?.state || "/");
         Swal.fire({
@@ -33,7 +31,6 @@ const SignIn = () => {
         });
       })
       .catch((error) => {
-        console.log(error);
         Swal.fire({
           icon: "error",
           title: "Oops...",
@@ -41,12 +38,10 @@ const SignIn = () => {
         });
       });
   };
-  console.log(errors);
+
   const handleGoogleSignIn = () => {
-    console.log("google");
     googleSignIn()
       .then((result) => {
-        console.log(result.user);
         setUser(result.user);
 
         navigate(location?.state || "/");
@@ -57,7 +52,6 @@ const SignIn = () => {
         });
       })
       .catch((error) => {
-        console.log(error);
         Swal.fire({
           icon: "error",
           title: "Oops...",

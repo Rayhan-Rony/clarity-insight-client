@@ -6,12 +6,12 @@ import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAYaNlX8gtxIpBnHTvnsh07PL0WWZO1qfs",
-  authDomain: "clarity-insights-98077.firebaseapp.com",
-  projectId: "clarity-insights-98077",
-  storageBucket: "clarity-insights-98077.firebasestorage.app",
-  messagingSenderId: "283430016426",
-  appId: "1:283430016426:web:70225f1a7a2d07dbbdc7d3",
+  apiKey: import.meta.env.VITE_apiKey,
+  authDomain: import.meta.env.VITE_authDomain,
+  projectId: import.meta.env.VITE_projectId,
+  storageBucket: import.meta.env.VITE_storageBucket,
+  messagingSenderId: import.meta.env.VITE_messagingSenderId,
+  appId: import.meta.env.VITE_appId,
 };
 
 // Initialize Firebase

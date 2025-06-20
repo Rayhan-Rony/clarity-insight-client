@@ -17,12 +17,13 @@ const MyArticles = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/myArticles?email=${user?.email}`)
+      .get(
+        `https://clarity-insight-server.vercel.app/myArticles?email=${user?.email}`
+      )
       .then((response) => {
-        console.log(response.data);
         setArticles(response.data);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {});
   }, [loading, updated, deleted]);
 
   const openModal = () => {
@@ -30,13 +31,12 @@ const MyArticles = () => {
   };
   const handleEditArticle = (id) => {
     const modalArticle = articles.filter((article) => article._id === id);
-    console.log(modalArticle);
+
     setModalArticles(modalArticle);
   };
   const closeModal = () => {
     setIsModalOpen(false);
   };
-  console.log(user?.email);
 
   const handleUpdateWithModal = (e) => {
     e.preventDefault();
@@ -48,11 +48,10 @@ const MyArticles = () => {
     const id = form.articleId.value;
 
     const newInfo = { title, categoryName, content, id, photo };
-    console.log(newInfo);
+
     axios
-      .patch("http://localhost:3000/myArticles", newInfo)
+      .patch("https://clarity-insight-server.vercel.app/myArticles", newInfo)
       .then((response) => {
-        console.log(response);
         Swal.fire({
           title: "Update your insights successfully",
           icon: "success",
@@ -60,9 +59,7 @@ const MyArticles = () => {
         });
         setUpdated(!updated);
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch((error) => {});
   };
   const handleDeleteArticle = (id) => {
     Swal.fire({
@@ -76,17 +73,16 @@ const MyArticles = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`http://localhost:3000/myArticles/${id}`)
-          .then((response) => console.log(response))
-          .catch((error) => {
-            console.log(error);
-          });
-        Swal.fire({
-          title: "Deleted!",
-          text: "Your insights has been deleted.",
-          icon: "success",
-        });
-        setDeleted(!deleted);
+          .delete(`https://clarity-insight-server.vercel.app/myArticles/${id}`)
+          .then((response) => {
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your insights has been deleted.",
+              icon: "success",
+            });
+            setDeleted(!deleted);
+          })
+          .catch((error) => {});
       }
     });
   };

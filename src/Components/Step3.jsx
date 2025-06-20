@@ -9,7 +9,6 @@ const Step3 = () => {
     setValue,
   } = useFormContext();
   const currentTags = watch("tags", []); // Watch the 'tags' field, default to empty array
-  console.log(currentTags);
 
   const options = {
     day: "numeric",
@@ -22,16 +21,12 @@ const Step3 = () => {
   const formattedDate = (currentDate) => {
     const formatDate = currentDate.split(",").join("").split(" ");
 
-    console.log(formatDate);
     const day = formatDate[1];
     const month = formatDate[0];
     const year = formatDate[2];
     return `${day} ${month} ${year}`;
   };
 
-  // console.log(date.toLocaleDateString());
-  // const formattedDate = date.toLocaleDateString("en-US", options);
-  //   console.log(date.toLocaleString());
   const handleAddTag = (e) => {
     if (e.key === "Enter" || e.key === ",") {
       e.preventDefault(); // Prevent form submission or comma from typing
@@ -39,7 +34,7 @@ const Step3 = () => {
       if (newTag && !currentTags.includes(newTag)) {
         // Add if not empty and not a duplicate
         setValue("tags", [...currentTags, newTag]);
-        e.target.value = ""; // Clear the input
+        e.target.value = "";
       }
     }
   };
@@ -74,7 +69,6 @@ const Step3 = () => {
             className="input  focus:outline-none border-none w-full"
             placeholder="e.g., React, AI, Education"
             onKeyDown={handleAddTag}
-            // {...register("tags", { required: "Please add at least one tag" })}
           />
         </label>
 

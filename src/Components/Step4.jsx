@@ -4,12 +4,12 @@ import useAuth from "../Hooks/useAuth";
 
 const Step4 = () => {
   const { user } = useAuth();
-  console.log(user);
+
   const {
     register,
     formState: { errors },
   } = useFormContext();
-  //   const {} = useForm();
+
   return (
     <div className="space-y-4">
       <div>

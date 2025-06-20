@@ -4,9 +4,9 @@ import InsightCard from "../Components/InsightCard";
 
 const CategoryDetails = () => {
   const params = useParams();
-  console.log(params);
+
   const data = useLoaderData();
-  console.log(data);
+
   return (
     <div className=" w-11/12 mx-auto min-h-screen">
       <h1 className="md:text-4xl text-2xl font-bold text-center text-gray-900 md:mb-12 mb-6 mt-6">

@@ -6,14 +6,11 @@ const Categories = () => {
   const [categoriesData, setCategoriesData] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:3000/categories")
+      .get("https://clarity-insight-server.vercel.app/categories")
       .then((response) => {
-        console.log(response.data);
         setCategoriesData(response.data);
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch((error) => {});
   }, []);
   return (
     <section className="md:py-20 py-10 ">

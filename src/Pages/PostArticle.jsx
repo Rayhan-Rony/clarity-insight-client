@@ -27,9 +27,8 @@ const PostArticle = () => {
     }
 
     axios
-      .post("http://localhost:3000/insights", data)
+      .post("https://clarity-insight-server.vercel.app/insights", data)
       .then((response) => {
-        console.log("Submission successful:", response.data);
         Swal.fire({
           title: "Add Your insights successfully",
           icon: "success",
@@ -37,9 +36,7 @@ const PostArticle = () => {
         });
         navigate("/myArticles");
       })
-      .catch((error) => {
-        console.error("Submission error:", error);
-      });
+      .catch((error) => {});
   };
 
   const back = () => setStep((prev) => prev - 1);

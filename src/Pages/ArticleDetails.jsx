@@ -12,11 +12,9 @@ const ArticleDetails = () => {
   const [comments, setComments] = useState([]);
   const [postClicked, setPostClicked] = useState(false);
   const { user } = useAuth();
-  // console.log(user);
-  // console.log(article);
 
   const { year, month, day } = dateFormat(article?.date);
-  // console.log(year, month, day);
+
   const {
     _id,
     title,
@@ -28,39 +26,30 @@ const ArticleDetails = () => {
     name,
   } = article;
   const handleLikesCount = () => {
-    console.log(likesCount);
-
     const likes = {
       likesCount: likesCount + 1,
       postId: _id,
     };
-    console.log(likesCount);
+
     axios
-      .post(`http://localhost:3000/likes/${_id}`, likes)
-      .then((response) => {
-        // console.log("inside");
-        // console.log(response.data);
-      })
-      .catch((error) => console.log(error));
+      .post(`https://clarity-insight-server.vercel.app/likes/${_id}`, likes)
+      .then((response) => {})
+      .catch((error) => {});
   };
   useEffect(() => {
     axios
       .get(`http://localhost:3000/likes/${_id}`)
       .then((response) => {
-        // console.log("inside get then");
         if (response.data) {
           setLikesCount(response.data.likesCount);
         } else {
           setLikesCount(0);
         }
-
-        console.log(response);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {});
   }, []);
 
   const handlePostComment = () => {
-    console.log(commentText);
     if (!commentText.trim()) {
       alert("You must be add comment to post");
     } else {
@@ -73,28 +62,27 @@ const ArticleDetails = () => {
         postId: _id,
       };
       axios
-        .post("http://localhost:3000/comments", commentDetails)
+        .post(
+          "https://clarity-insight-server.vercel.app/comments",
+          commentDetails
+        )
         .then((response) => {
-          console.log("inside post comment then", response.data);
           if (response.data.acknowledged) {
             setLoading(!loading);
           }
         })
-        .catch((error) => {
-          console.log(error);
-        });
+        .catch((error) => {});
       setCommentText("");
       setPostClicked(!postClicked);
     }
   };
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/comments/${_id}`)
+      .get(`https://clarity-insight-server.vercel.app/comments/${_id}`)
       .then((response) => {
-        console.log("inside get of comments", response.data);
         setComments(response.data);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {});
   }, [postClicked, loading]);
 
   return (
