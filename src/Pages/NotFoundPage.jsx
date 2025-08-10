@@ -1,41 +1,54 @@
 import React from "react";
 import { Link } from "react-router";
+import { motion } from "framer-motion";
+import { FiArrowRight } from "react-icons/fi";
 
 const NotFoundPage = () => {
   return (
-    <div className="min-h-screen bg-gray-100  flex flex-col items-center justify-center text-center">
-      <div className="bg-white rounded-lg shadow-xl p-8 md:p-12 max-w-11/12  min-h-screen w-full transform transition-all duration-300 hover:scale-105">
-        <h1 className="text-9xl font-extrabold text-[#00183A]  mb-4 animate-bounce">
-          404
-        </h1>
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-          Page Not Found
-        </h2>
-        <p className="text-gray-600 text-lg md:text-xl mb-6 leading-relaxed">
-          Oops! It looks like the page you're trying to find doesn't exist. It
-          might have been moved, deleted, or you might have typed the address
-          incorrectly.
-        </p>
-        <Link
-          to="/"
-          className="inline-flex items-center px-8 py-4 bg-[#00FFFF]  font-semibold rounded-full shadow-lg hover:bg-[#00FFFF] transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-300"
+    <div className="min-h-screen bg-gradient-to-tr bg-linear-to-r from-[#01257D] to-[#00FFFF] via-[#0E7490] flex flex-col items-center justify-center px-6">
+      <div className="bg-white bg-opacity-20 backdrop-blur-lg rounded-3xl shadow-2xl p-10 max-w-lg w-full text-center ">
+        {/* Animated 404 with glitch effect */}
+        <motion.h1
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{
+            type: "spring",
+            stiffness: 260,
+            damping: 20,
+            repeat: Infinity,
+            repeatType: "reverse",
+            duration: 2,
+          }}
+          className="text-[10rem] font-extrabold tracking-widest relative inline-block mb-6"
         >
-          Go Back Home
-          <svg
-            className="ml-2 w-5 h-5"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
+          404
+          <span className="absolute top-0 left-0 w-full h-full text-transparent text-shadow-glitch animate-glitch"></span>
+          <span className="absolute top-0 left-0 w-full h-full text-transparent text-shadow-glitch-red animate-glitchRed"></span>
+        </motion.h1>
+
+        <h2 className="text-4xl md:text-5xl font-extrabold mb-4 drop-shadow-lg">
+          Oops! Page Not Found
+        </h2>
+
+        <p className="text-lg md:text-xl max-w-md mx-auto mb-8 drop-shadow-md">
+          The page you're looking for doesn't exist or has been moved. Let's get
+          you back home safely.
+        </p>
+
+        <motion.div
+          whileHover={{ scale: 1.1, y: -4 }}
+          whileTap={{ scale: 0.95 }}
+          className="inline-block"
+        >
+          <Link
+            to="/"
+            className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full font-semibold shadow-lg hover:from-cyan-500 hover:to-blue-600 transition-colors duration-300 focus:outline-none focus:ring-4 focus:ring-cyan-300"
+            aria-label="Go back home"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M17 8l4 4m0 0l-4 4m4-4H3"
-            ></path>
-          </svg>
-        </Link>
+            Go Back Home
+            <FiArrowRight className="w-6 h-6" />
+          </Link>
+        </motion.div>
       </div>
     </div>
   );
