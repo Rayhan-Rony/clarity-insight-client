@@ -19,7 +19,7 @@ const NotFoundPage = () => {
             repeatType: "reverse",
             duration: 2,
           }}
-          className="text-[10rem] font-extrabold tracking-widest relative inline-block mb-6"
+          className="lg:text-[10rem] md:text-[5rem] text-[3rem] font-extrabold tracking-widest relative inline-block mb-6"
         >
           404
           <span className="absolute top-0 left-0 w-full h-full text-transparent text-shadow-glitch animate-glitch"></span>
