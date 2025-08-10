@@ -7,7 +7,6 @@ const Banner = () => {
     <div>
       <>
         <div className="min-h-screen bg-[#00183A] bg-[url('/bannerBg.jpeg')] lg:bg-contain bg-cover  bg-no-repeat lg:bg-right">
-          <Navbar></Navbar>
           <div className="text-white  flex flex-col lg:gap-10  gap-6 justify-center  max-w-11/12 mx-auto ">
             <h1 className="lg:text-6xl text-3xl lg:max-w-3/5 lg:pt-40 lg:leading-20 ">
               Empowering Student Voices Through Shared Knowledge

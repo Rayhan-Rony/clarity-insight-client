@@ -38,16 +38,17 @@ const Navbar = () => {
       })
       .catch((error) => {});
   };
+  console.log(user?.photoURL);
   return (
     <div
-      className={`${
+      className={`sticky top-0 z-50 ${
         location.pathname === "/"
-          ? "bg-transparent"
-          : "bg-linear-to-r from-[#01257D] to-[#00FFFF] via-[#0E7490]"
+          ? "bg-[#00183A] "
+          : "bg-linear-to-r from-[#01257D] to-[#00FFFF] via-[#0E7490] "
       } ${
         location.pathname === "/signUp" || location.pathname === "/signIn"
           ? "hidden"
-          : "block"
+          : "block "
       }`}
     >
       <div className={`navbar  max-w-11/12 mx-auto py-6 text-white`}>
@@ -77,26 +78,28 @@ const Navbar = () => {
               {links}
             </ul>
           </div>
-          <div className=" items-center gap-3 lg:flex hidden">
-            {/* <img className="w-8 h-8 " src={logoIcon} alt="" /> */}
-            <svg
-              viewBox="0 0 32 32"
-              xmlns="http://www.w3.org/2000/svg"
-              className="w-12 h-12 fill-current text-white"
-            >
-              <path
-                d="M16,1c8.271,0,15,6.729,15,15s-6.729,15-15,15S1,24.271,1,16S7.729,1,16,1 M16,0C7.163,0,0,7.163,0,16s7.163,16,16,16
+          <Link to={"/"}>
+            <div className=" items-center gap-3 lg:flex hidden">
+              {/* <img className="w-8 h-8 " src={logoIcon} alt="" /> */}{" "}
+              <svg
+                viewBox="0 0 32 32"
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-12 h-12 fill-current text-white"
+              >
+                <path
+                  d="M16,1c8.271,0,15,6.729,15,15s-6.729,15-15,15S1,24.271,1,16S7.729,1,16,1 M16,0C7.163,0,0,7.163,0,16s7.163,16,16,16
             s16-7.163,16-16S24.837,0,16,0L16,0z"
-              />
-              <path
-                d="M16,7.045L24.955,16L16,24.955L7.045,16L16,7.045 M16,5.607l-0.793,0.793L6.4,15.107L5.607,16l0.793,0.893l8.807,8.707
+                />
+                <path
+                  d="M16,7.045L24.955,16L16,24.955L7.045,16L16,7.045 M16,5.607l-0.793,0.793L6.4,15.107L5.607,16l0.793,0.893l8.807,8.707
             L16,26.393l0.793-0.793l8.807-8.707L26.393,16l-0.793-0.893l-8.807-8.707L16,5.607L16,5.607z"
-              />
-            </svg>
-            <a className="text-3xl md:text-2xl font bold text-white ">
-              Clarity Insights
-            </a>
-          </div>
+                />
+              </svg>
+              <span className="text-3xl md:text-2xl font bold text-white ">
+                Clarity Insights
+              </span>
+            </div>
+          </Link>
         </div>
         <div className="navbar-center hidden lg:flex ">
           <ul className="menu menu-horizontal px-1 gap-5">{links}</ul>
