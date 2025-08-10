@@ -23,7 +23,7 @@ const Navbar = () => {
         <NavLink to={"/postArticle"}>Post Article</NavLink>
       </li>
       <li className="text-base">
-        <NavLink to={"/"}>About Us</NavLink>
+        <NavLink to={"/aboutUs"}>About Us</NavLink>
       </li>
     </>
   );

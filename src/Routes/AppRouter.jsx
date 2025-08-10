@@ -13,6 +13,7 @@ import MyArticles from "../Pages/MyArticle";
 import PrivateRouter from "./PrivateRouter";
 import ProfileDetails from "../Pages/ProfileDetails";
 import CategoryDetails from "../Pages/CategoryDetails";
+import AboutUs from "../Pages/AboutUs";
 
 export const router = createBrowserRouter([
   {
@@ -74,6 +75,10 @@ export const router = createBrowserRouter([
           fetch(
             `https://clarity-insight-server.vercel.app/category/${params.name}`
           ),
+      },
+      {
+        path: "/aboutUs",
+        Component: AboutUs,
       },
     ],
   },
