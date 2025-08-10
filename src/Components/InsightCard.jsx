@@ -6,7 +6,7 @@ const InsightCard = ({ article }) => {
 
   return (
     <div className="bg-white   rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
-      <h2 className="md:text-2xl da text-xl font-bold text-gray-800 mb-2">
+      <h2 className="md:text-2xl  text-xl font-bold text-gray-800 mb-2 line-clamp-1">
         {article.title}
       </h2>
       <p className="text-gray-600 text-sm mb-4 ">
