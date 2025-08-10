@@ -2,7 +2,10 @@
 
 Clarity Insights is a modern, responsive web platform dedicated to providing well-researched and insightful articles across a diverse range of topics. Our mission is to cut through the noise, offering clear understanding and informed perspectives to empower our readers.
 
-Please visit the Clarity Insights website [here]([https://clarity-insights-98077.web.app/]).
+
+Please visit the Clarity Insights website [here](https://clarity-insights-98077.web.app/).
+
+
 
 ## Tools and Technologies
 
