@@ -1,4 +1,6 @@
 import React from "react";
+import faqLottieFile from "../../public/faqLottie.json";
+import Lottie from "lottie-react";
 
 const Faq = () => {
   const faqs = [
@@ -35,32 +37,41 @@ const Faq = () => {
     },
   ];
   return (
-    <section className="py-12 md:py-20   transition-colors duration-300">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-10 text-gray-900 ">
+    <section className="py-12 md:py-20 bg-[#F2F4F8]   transition-colors duration-300">
+      <div className="max-w-11/12 mx-auto px-4 sm:px-6 lg:px-0">
+        <h2 className="text-3xl md:text-4x mb-2 font-bold text-center  text-gray-900 ">
           Frequently Asked Questions
         </h2>
+        <p className="text-center mb-10">
+          Can't find answer ?Call us +8801985863081 or email
+          contact@clarityinsights.com!
+        </p>
 
-        <div className="space-y-4">
-          {faqs.map((faq, index) => (
-            <div
-              key={index}
-              className="collapse collapse-plus bg-base-100 shadow-md rounded-lg "
-            >
-              <input type="radio" name="my-accordion-3" id={`faq-${index}`} />
-
-              <label
-                htmlFor={`faq-${index}`}
-                className="collapse-title text-xl font-medium text-base-content cursor-pointer"
+        <div className=" flex lg:flex-row-reverse flex-col items-center gap-5">
+          <div className="flex-1">
+            <Lottie animationData={faqLottieFile}></Lottie>
+          </div>
+          <div className="space-y-4 flex-1">
+            {faqs.map((faq, index) => (
+              <div
+                key={index}
+                className="collapse collapse-plus bg-base-100 shadow-md rounded-lg "
               >
-                {faq.question}
-              </label>
+                <input type="radio" name="my-accordion-3" id={`faq-${index}`} />
 
-              <div className="collapse-content text-base-content">
-                <p className="py-2">{faq.answer}</p>
+                <label
+                  htmlFor={`faq-${index}`}
+                  className="collapse-title text-xl font-medium text-base-content cursor-pointer"
+                >
+                  {faq.question}
+                </label>
+
+                <div className="collapse-content text-base-content">
+                  <p className="py-2">{faq.answer}</p>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>
